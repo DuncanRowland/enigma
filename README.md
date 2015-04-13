@@ -1,5 +1,5 @@
 # enigma
-Enigma Machine - Old School C
+Enigma-type Machine - Old School C
 
 N.B. This is only an approximation to the actual Enigma algorithm.
 

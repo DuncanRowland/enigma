@@ -34,10 +34,9 @@ int main(int argc, char** argv)
          rotors[NUMROTORS][c]=ROTORS[NUMROTORS][c]-'A';
 
       // Generate the reverse paths
-      for(int r=0;r<NUMROTORS;r++) {
+      for(int r=0;r<NUMROTORS;r++)
          for(int c=0;c<NUMCHARS;c++)
             rotors[2*NUMROTORS-r][rotors[r][c]]=c;
-      }
 
       // Apply all rotor mappings to current character (forwards, reflector and reverse)
       int v = (int)*inCharacter++-'A';

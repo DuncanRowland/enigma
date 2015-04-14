@@ -18,20 +18,15 @@ int rotors[2*NUMROTORS+1][NUMCHARS];
 int main(int argc, char** argv)
 {
    char* rotorPosition = argv[1];
-   for(int i=0;i<NUMROTORS;i++)rotorPosition[i]-='A';
    char* inCharacter = argv[2];
-   for(int i=0;i<NUMCHARS;i++)inCharacter[i]-='A';
 
    while(*inCharacter!='\0') { //Loop over all characters in the input
-
-      // Copy the rotor values (A->0..Z->25) including the rotor position offset
-      int placeDivisor = 1;
+      // Copy the rotor values and add the rotor position offset mapping A->0, B->1, ...
       for(int r=0;r<NUMROTORS;r++) {
          for(int c=0;c<NUMCHARS;c++)
-            rotors[r][c]=ROTORS[r][(c+(rotorPosition/placeDivisor))%NUMCHARS]-'A';
-         placeDivisor*=NUMCHARS;
+            rotors[r][c]=ROTORS[r][(c+rotorPosition[r]-'A')%NUMCHARS]-'A';
       }
-      // Copy the reflector values (these do not have the rotor offset applied)
+      // Copy and map the reflector values (these do not have the rotor offset applied)
       for(int c=0;c<NUMCHARS;c++)
          rotors[NUMROTORS][c]=ROTORS[NUMROTORS][c]-'A';
 
@@ -40,13 +35,25 @@ int main(int argc, char** argv)
          for(int c=0;c<NUMCHARS;c++)
             rotors[2*NUMROTORS-r][rotors[r][c]]=c;
 
-      // Apply all rotor mappings to current character (forwards, reflector and reverse)
-      int v = (int)*inCharacter++-'A';
+      // Map current character and apply all rotor substitutions (forwards, reflector and reverse)
+      int v = (int)*inCharacter-'A';
       for(int r=0;r<=2*NUMROTORS;r++)
          v=rotors[r][v];
 
-      // Increment the rotor position and output the character
-      rotorPosition++;
+      // Increment the rotor position, character pointer and output the character
+      rotorPosition[0]++;
+      if(rotorPosition[0]=='Z') {
+         rotorPosition[0]='A';
+         rotorPosition[1]++;
+         if(rotorPosition[1]=='Z') {
+            rotorPosition[1]='A';
+            rotorPosition[2]++;
+               if(rotorPosition[2]=='Z') {
+               rotorPosition[2]='A';
+            }
+         }
+      }
+      inCharacter++;
       printf("%c",(char)v+'A');
    }
 

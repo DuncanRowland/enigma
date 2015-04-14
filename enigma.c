@@ -7,7 +7,7 @@
 #define NUMCHARS 26 /* Capitals only. A..Z -> 0..25 */
 
 const char ROTORS[NUMROTORS+1][NUMCHARS] = {
-   "ABCDEFGHIJKLMNOPQRSTUVWXYZ", //Rotor 1   (by default, f(A)->A, f(B)->B...)
+   "ABCDEFGHIJKLMNOPQRSTUVWXYZ", //Rotor 1   (by default, f(A)->A, f(B)->B, ...)
    "ABCDEFGHIJKLMNOPQRSTUVWXYZ", //Rotor 2
    "ABCDEFGHIJKLMNOPQRSTUVWXYZ", //Rotor 3
    "ZYXWVUTSRQPONMLKJIHGFEDCBA"  //Reflector (additional, f(f(x))=x and f(x)!=x)

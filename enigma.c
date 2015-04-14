@@ -42,13 +42,13 @@ int main(int argc, char** argv)
 
       // Increment the rotor position, character pointer and output the character
       rotorPosition[0]++;
-      if(rotorPosition[0]=='Z') {
+      if(rotorPosition[0]>'Z') {
          rotorPosition[0]='A';
          rotorPosition[1]++;
-         if(rotorPosition[1]=='Z') {
+         if(rotorPosition[1]>'Z') {
             rotorPosition[1]='A';
             rotorPosition[2]++;
-               if(rotorPosition[2]=='Z') {
+               if(rotorPosition[2]>'Z') {
                rotorPosition[2]='A';
             }
          }

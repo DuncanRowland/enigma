@@ -17,8 +17,10 @@ int rotors[2*NUMROTORS+1][NUMCHARS];
 
 int main(int argc, char** argv)
 {
-   int rotorPosition = atoi(argv[1]);
+   char* rotorPosition = argv[1];
+   for(int i=0;i<NUMROTORS;i++)rotorPosition[i]-='A';
    char* inCharacter = argv[2];
+   for(int i=0;i<NUMCHARS;i++)inCharacter[i]-='A';
 
    while(*inCharacter!='\0') { //Loop over all characters in the input
 

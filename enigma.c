@@ -21,6 +21,7 @@ int main(int argc, char** argv)
    char* inCharacter = argv[2];
 
    while(*inCharacter!='\0') { //Loop over all characters in the input
+
       // Copy the rotor values and add the rotor position offset (mapping A->0, B->1, ...)
       for(int r=0;r<NUMROTORS;r++) {
          for(int c=0;c<NUMCHARS;c++)
